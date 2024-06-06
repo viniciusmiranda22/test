@@ -1,0 +1,20 @@
+type AccountInfo = record {
+    address : text;
+};
+service : {
+    "get_ethereum_address": () -> (variant { Ok : AccountInfo; Err : text });
+    "get_ecdsa_public_key": () -> (variant { Ok : vec nat8; Err : text });
+    "get_transaction_count": (opt text) -> (variant { Ok : text; Err : text });
+    "get_gas_price": () -> (variant { Ok : text; Err : text });
+    "sign_message": (text) -> (variant { Ok : vec nat8; Err : text });
+    "balance_of_native": () -> (variant { Ok : text; Err : text });
+    "sign_transfer_native": (text, nat64, opt nat, opt nat, nat64) -> (variant { Ok : text; Err : text });
+    "transfer_native": (text, nat64, opt nat, opt nat, nat64) -> (variant { Ok : text; Err : text });
+    "balance_of_erc20": (text, opt text, opt text) -> (variant { Ok : text; Err : text });
+    "sign_transfer_erc20": (text, text, nat64, opt nat, opt nat, nat64) -> (variant { Ok : text; Err : text });
+    "transfer_erc20": (text, text, nat64, opt nat, opt nat, nat64) -> (variant { Ok : text; Err : text });
+    "debug_get_ecdsa_key_name": () -> (text) query;
+    "debug_use_ecdsa_key_for_local": () -> ();
+    "debug_use_ecdsa_key_for_test": () -> ();
+    "debug_use_ecdsa_key_for_prod": () -> ();
+}
